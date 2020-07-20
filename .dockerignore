@@ -1,0 +1,8 @@
+postgres.bak
+airflow/data
+postgres.bak
+.env
+.Rprofile
+.Rproj.user
+.idea
+.git
