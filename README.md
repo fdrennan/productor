@@ -1,93 +1,48 @@
 # PRODUCTOR 
 
+## Update `.productor.conf`
+If using in production, add `.productor.conf` to your `.gitignore` file in the home directory.
+```
+# MUST UPDATE FOR YOUR SYSTEM, GET YOUR LOCAL IP ADDRESS (STARTING WITH 192, though ifconfig)
+PRODUCTOR_HOME=/Users/fdrennan/productor
+NGINX_HOST_NAME=192.168.0.33
+POSTGRES_HOST=192.168.0.33
+AIRFLOW_HOST=192.168.0.33
+
+
+# OPTIONAL
+AIRFLOW__CORE__FERNET_KEY=lPWLoH65nZPnY6O-SrhlQsYBF1I2VuPx8NYTucdWpD4=%
+AIRFLOW_USER=airflow
+AIRFLOW_PASSWORD=airflow
+AIRFLOW_DB=airflow
+
+PRODUCTOR_POSTGRES_USER=admin
+PRODUCTOR_POSTGRES_PASSWORD=password
+PRODUCTOR_POSTGRES_DB=public
+POSTGRES_PORT=5432
+```
+
 ## Getting Started 
-
-
 ``` 
 ## Go to the working directory for productor
 cd productor
 
-## Build the API
-docker build -t productor_api --file ./DockerfileApi .
-
-## Build the Airflow Container
-docker build -t productor_rpy --file ./DockerfileRpy .
-
-## Build the Shiny Application
-docker build -t productor_app --file ./DockerfileApp .
+Rscript update_env.R # ONLY AFTER UPDATING .productor.conf
+Rscript scripts/build.R # Take a nap, runs for a while
+Rscript scripts/start.R
 ```
 
+## Stopping
 ```
-docker container ls -a
-docker volume ls
-```
-
-## Build Airflow
-```
-cd airflow
-
-docker-compose up -d --build productor_postgres
-docker-compose up -d --build productor_initdb
-docker-compose up 
-
+Rscript scripts/stop.R
 ```
 
-## Build Postgres
-```
-cd postgres
-docker-compose up 
-
-```
-
-## Build Shiny
-```
-cd postgres
-docker-compose up 
-
-```
-
-## Build NGINX
-Update computer address in nginx.conf first where running. Do not use localhost or 192.168.0.1
-```
-cd postgres
-docker-compose up 
-
-```
-
-### Remove Airflow 
-```
-docker container stop airflow_productor_scheduler_1
-docker container stop airflow_productor_webserver_1
-docker container stop airflow_productor_initdb_1
-docker container stop airflow_productor_postgres_1
-docker container rm airflow_productor_scheduler_1
-docker container rm airflow_productor_webserver_1
-docker container rm airflow_productor_initdb_1
-docker container rm airflow_productor_postgres_1
-docker volume rm airflow_productor-airflow-logs
-docker volume rm airflow_productor_volume
-docker volume rm airflow_airflow_postgres
-
-```
-
-### Remove Postgres
-```
-docker container stop productor_postgres
-docker container rm productor_postgres
-docker volume rm postgres_productor_postgres_volume
-
-```
-
-### Remove Shiny
-```
-docker container stop productor_app
-docker container rm productor_app
-docker volume rm postgres_productor_postgres_volume
-
-```
-
-
-
-http://localhost/api/package_downloads
+### Notable Locations
+#### Shiny
 http://localhost/
+
+#### API
+http://localhost/api/package_downloads
+
+#### Airflow
 http://localhost:8080
