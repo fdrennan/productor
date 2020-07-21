@@ -46,6 +46,14 @@ docker-compose up
 
 ```
 
+## Build NGINX
+Update computer address in nginx.conf first where running. Do not use localhost or 192.168.0.1
+```
+cd postgres
+docker-compose up 
+
+```
+
 ### Remove Airflow 
 ```
 docker container stop airflow_productor_scheduler_1
