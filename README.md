@@ -85,3 +85,9 @@ docker container rm productor_app
 docker volume rm postgres_productor_postgres_volume
 
 ```
+
+
+
+http://localhost/api/package_downloads
+http://localhost/
+http://localhost:8080

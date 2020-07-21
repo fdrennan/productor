@@ -1,39 +1,38 @@
+library(shiny)
 library(shinydashboard)
+library(httr)
+library(jsonlite)
+library(magrittr)
+library(shinycssloaders)
+
+options(shiny.sanitize.errors = FALSE)
 
 ui <- dashboardPage(
-  dashboardHeader(title = "Value boxes"),
-  dashboardSidebar(),
+  dashboardHeader(title = "PRODUCTOR"),
+  dashboardSidebar(
+    sidebarMenu(
+      menuItem("Dashboard", tabName = "dashboard", icon = icon("chart-bar"))
+    )
+  ),
   dashboardBody(
     fluidRow(
-      # A static valueBox
-      valueBox(10 * 2, "New Orders", icon = icon("credit-card")),
-      
-      # Dynamic valueBoxes
-      valueBoxOutput("progressBox"),
-      
-      valueBoxOutput("approvalBox")
-    ),
-    fluidRow(
-      # Clicking this will increment the progress amount
-      box(width = 4, actionButton("count", "Increment progress"))
+      box(withSpinner(dataTableOutput("progressBox")), width = 12)
     )
   )
 )
 
 server <- function(input, output) {
-  output$progressBox <- renderValueBox({
-    valueBox(
-      paste0(25 + input$count, "%"), "Progress", icon = icon("list"),
-      color = "purple"
-    )
+  output$progressBox <- renderDataTable({
+    package_downloads <- 
+      GET(url = 'http://192.168.0.33/api/package_downloads') %>% 
+      content(type = 'text') %>% 
+      fromJSON %>% 
+      .$data %>% 
+      fromJSON
+    
+    package_downloads
   })
   
-  output$approvalBox <- renderValueBox({
-    valueBox(
-      "80%", "Approval", icon = icon("thumbs-up", lib = "glyphicon"),
-      color = "yellow"
-    )
-  })
 }
 
 shinyApp(ui, server)
