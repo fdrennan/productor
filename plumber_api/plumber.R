@@ -56,3 +56,41 @@ function() {
 
   return(response)
 }
+
+#* @serializer unboxedJSON
+#* @get /package_downloads
+function() {
+  message(glue("Within package_downloads: {Sys.time()}"))
+  
+  # Build the response object (list will be serialized as JSON)
+  response <- list(
+    statusCode = 200,
+    data = "",
+    message = "Success!",
+    metaData = list(
+      args = list(),
+      runtime = 0
+    )
+  )
+  
+  response <- tryCatch(
+    {
+      # Run the algorithm
+      tic()
+      con <- postgres_connector()
+      response$data <- toJSON(mtcars)
+      timer <- toc(quiet = T)
+      response$metaData$runtime <- as.numeric(timer$toc - timer$tic)
+      
+      return(response)
+    },
+    error = function(err) {
+      response$statusCode <- 400
+      response$message <- paste(err)
+      
+      return(response)
+    }
+  )
+  
+  return(response)
+}
