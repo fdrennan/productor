@@ -2,12 +2,12 @@ FROM python:3.7.6
 
 WORKDIR /root
 
-COPY ./airflow/airflow.requirements.txt /root/airflow.requirements.txt
-RUN pip install --no-deps --trusted-host pypi.python.org -r airflow.requirements.txt
-
 RUN echo 'deb http://cloud.r-project.org/bin/linux/debian buster-cran35/' >> /etc/apt/sources.list
+
 RUN apt-get install dirmngr
+
 RUN apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF'
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     vim \
     r-base \
@@ -26,59 +26,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgdal-dev \
     libpq-dev -y
 
+COPY ./airflow/airflow.requirements.txt /root/airflow.requirements.txt
+
+RUN pip install --no-deps --trusted-host pypi.python.org -r airflow.requirements.txt
+
 WORKDIR /home/scripts
 
 RUN R -e "install.packages('devtools')"
-RUN R -e "install.packages('tidyverse')"
-RUN R -e "install.packages('reticulate')"
-RUN R -e "install.packages('RPostgres')"
-RUN R -e "install.packages('DBI')"
-RUN R -e "install.packages('glue')"
-RUN R -e "install.packages('fs')"
-RUN R -e "install.packages('dbplyr')"
-RUN R -e "install.packages('rvest')"
-RUN R -e "install.packages('lubridate')"
-RUN R -e "install.packages('tidytext')"
-RUN R -e "install.packages('purrr')"
-RUN R -e "install.packages('jsonlite')"
-RUN R -e "install.packages('tictoc')"
-RUN R -e "install.packages('stringr')"
-RUN R -e "install.packages('httpuv')"
-RUN R -e "install.packages('plumber')"
-RUN R -e "install.packages('ipify')"
-RUN R -e "install.packages('jose')"
-RUN R -e "install.packages('sourcetools')"
-RUN R -e "install.packages('fastmap')"
-RUN R -e "install.packages('mongolite')"
-RUN R -e "install.packages('elasticsearchr')"
-RUN R -e "install.packages('dbx')"
-RUN R -e "install.packages('ggthemes')"
-RUN R -e "install.packages('shinydashboard')"
-RUN R -e "install.packages('shiny')"
-RUN R -e "install.packages('future')"
-RUN R -e "install.packages('DT')"
-RUN R -e "install.packages('scales')"
-RUN R -e "install.packages('openxlsx')"
-RUN R -e "install.packages('httpuv')"
-RUN R -e "install.packages('spacyr')"
-RUN R -e "install.packages('quanteda')"
-RUN R -e "devtools::install_github('walkerke/tigris')"
-RUN R -e "install.packages('leaflet')"
 
-ARG DUMMY=unknowndatasssss
-COPY ./redditor-api /home/redditor-api
-COPY ./biggr /home/biggr
+COPY ./productor /home/productor
 
-RUN R -e "setwd('/home/biggr'); devtools::install()"
+RUN R -e "setwd('/home/productor'); devtools::install(dependencies=TRUE)"
 
-RUN R -e 'library(reticulate); \
-          library(biggr); \
-          use_python("/usr/bin/python3", required = TRUE); \
-          install_python(envname="redditor")'
-
-ARG DUMMY=rando
-RUN R -e "setwd('/home/redditor-api'); devtools::install()"
-
-
-COPY ./airflow/airflower/scripts/R/r_files/r_venv_install.R /r_venv_install.R
-RUN Rscript /r_venv_install.R
