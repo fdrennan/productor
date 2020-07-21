@@ -6,7 +6,6 @@ dirs_to_update <- c(
   'airflow',
   'glances',
   'nginx',
-  'pgadmin',
   'postgres',
   'scripts',
   'productor',
