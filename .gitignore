@@ -14,3 +14,4 @@ postgres.bak
 postgres.tar.gz
 *.remote
 .Renviron
+.env

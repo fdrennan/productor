@@ -77,8 +77,21 @@ function() {
     {
       # Run the algorithm
       tic()
-      con <- postgres_connector()
-      response$data <- toJSON(mtcars)
+      
+      response$data <- (function() {
+        con <- 
+          postgres_connector(
+            POSTGRES_HOST = Sys.getenv('POSTGRES_HOST'),
+            POSTGRES_PORT = Sys.getenv('POSTGRES_PORT'),
+            POSTGRES_USER = Sys.getenv('PRODUCTOR_POSTGRES_USER'),
+            POSTGRES_PASSWORD = Sys.getenv('PRODUCTOR_POSTGRES_PASSWORD'),
+            POSTGRES_DB = Sys.getenv('PRODUCTOR_POSTGRES_DB')
+          )
+        on.exit(expr = dbDisconnect(conn = con))
+        query_response <- dbGetQuery(conn = con, statement = 'select * from public.package_downloads')
+        toJSON(query_response)
+      })()
+      
       timer <- toc(quiet = T)
       response$metaData$runtime <- as.numeric(timer$toc - timer$tic)
       
