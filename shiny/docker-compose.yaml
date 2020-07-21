@@ -2,8 +2,8 @@ version: "3.0"
 
 services:
   shiny:
-    container_name: shiny
-    image: redditorapp
+    container_name: productor_app
+    image: productor_app
     restart: always
     user: 'root'
     # Uncomment the lines below to disable application logs STDOUT output

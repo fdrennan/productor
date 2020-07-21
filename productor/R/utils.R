@@ -51,10 +51,4 @@ postgres_connector <- function(POSTGRES_HOST = NULL,
   connection
 }
 
-#' @export my_collect
-my_collect <- function(connection) {
-  connection %>%
-    mutate_if(is.numeric, as.numeric) %>%
-    collect()
-}
 

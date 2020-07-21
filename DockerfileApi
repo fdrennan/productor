@@ -23,7 +23,7 @@ RUN R -e "install.packages('devtools')"
 
 COPY ./productor /home/productor
 
-RUN R -e "setwd('/home/productor'); devtools::install(dependencies=TRUE)"
+RUN R -e "setwd('/home/productor'); devtools::install()"
 
 EXPOSE 8000
 
