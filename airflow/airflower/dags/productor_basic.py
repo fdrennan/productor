@@ -6,12 +6,14 @@ args = {
     'owner': 'Freddy Drennan',
     'start_date': airflow.utils.dates.days_ago(2),
     'email': ['drennanfreddy@gmail.com'],
+    'retries': 2,
     'email_on_failure': True,
     'email_on_retry': True
 }
-dag = DAG(dag_id='update_aws_configuration',
+
+dag = DAG(dag_id='daily_ndexr',
           default_args=args,
-          schedule_interval=None,
+          schedule_interval='@daily',
           concurrency=1,
           max_active_runs=1,
           catchup=False)
@@ -22,3 +24,11 @@ task_1 = BashOperator(
     bash_command='. /home/scripts/R/shell/aws_configure',
     dag=dag
 )
+
+task_11 = BashOperator(
+    task_id='update_costs',
+    bash_command='. /home/scripts/R/shell/update_costs',
+    dag=dag
+)
+
+task_1 >> task_11

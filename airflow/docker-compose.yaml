@@ -1,23 +1,24 @@
 version: '3.4'
 services:
-  webserver:
+  productor_webserver:
     image: productor_rpy
     restart: always
     depends_on:
-      - initdb
+      - productor_initdb
     env_file: .env
     environment:
       AIRFLOW_HOME: /root/airflow
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@172.17.0.1:5439/airflow
     volumes:
+      - ./airflow.cfg:/root/airflow/airflow.cfg
       - ./airflower/dags:/root/airflow/dags
       - ./airflower/plugins:/root/airflow/plugins
-      - airflow-worker-logs:/root/airflow/logs
+      - productor_airflow_logs:/root/airflow/logs
     ports:
       - "8080:8080"
     command: airflow webserver
-  postgres:
+  productor_postgres:
     image: postgres:9.6
     restart: always
     environment:
@@ -27,37 +28,38 @@ services:
     ports:
       - 5439:5432
     volumes:
-      - postgres:/var/lib/postgresql/data
-  initdb:
+      - airflow_postgres:/var/lib/postgresql/data
+  productor_initdb:
     image: productor_rpy
     restart: always
     depends_on:
-      - postgres
+      - productor_postgres
     env_file: .env
     environment:
       AIRFLOW_HOME: /root/airflow
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@172.17.0.1:5439/airflow
     command: airflow initdb
-  scheduler:
+  productor_scheduler:
     image: productor_rpy
     restart: always
     depends_on:
-      - webserver
+      - productor_webserver
     env_file: .env
     environment:
       AIRFLOW_HOME: /root/airflow
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@172.17.0.1:5439/airflow
     volumes:
+      - ./airflow.cfg:/root/airflow/airflow.cfg
       - ./airflower/dags:/root/airflow/dags
       - ./airflower/scripts:/home/scripts
       - ./airflower/plugins:/root/airflow/plugins
       - ./.env:/root/.Renviron
-      - airflow-worker-logs:/root/airflow/logs
-      - ./data:/data
+      - productor_airflow_logs:/root/airflow/logs
     command: airflow scheduler
 
 volumes:
-  redditor_volume: {}
-  airflow-worker-logs:
+  productor_volume: {}
+  airflow_postgres:
+  productor_airflow_logs:
