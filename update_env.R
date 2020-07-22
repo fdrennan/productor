@@ -10,6 +10,7 @@ dirs_to_update <- c(
   'scripts',
   'productor',
   'plumber_api',
+  'productorapp',
   'shiny'
 )
 

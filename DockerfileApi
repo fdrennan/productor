@@ -1,29 +1,9 @@
-FROM trestletech/plumber
+FROM fdrennan/productor_api
 MAINTAINER Docker User <docker@user.org>
-
-RUN apt-get update --allow-releaseinfo-change -qq && apt-get install -y \
-  gcc-8-base \
-  libgcc-8-dev \
-  git-core \
-  libssl-dev \
-  libcurl4-openssl-dev \
-  libxml2-dev \
-  pandoc \
-  libpq-dev \
-  python3.6 \
-  virtualenv \
-  python3-pip \
-  python3-venv \
-  libssl-dev \
-  postgresql-client \
-  libsasl2-dev
-
-
-RUN R -e "install.packages('devtools')"
 
 COPY ./productor /home/productor
 
-RUN R -e "setwd('/home/productor'); devtools::install()"
+RUN R -e "setwd('/home/productor'); devtools::install(dependencies=TRUE)"
 
 EXPOSE 8000
 

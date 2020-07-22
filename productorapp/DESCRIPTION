@@ -13,7 +13,13 @@ Depends:
     jsonlite,
     magrittr,
     shinycssloaders,
-    glue
+    glue,
+    ggplot2,
+    lubridate,
+    dplyr,
+    scales,
+    promises,
+    future
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true

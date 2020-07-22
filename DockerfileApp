@@ -1,40 +1,6 @@
-FROM rocker/shiny-verse
+FROM fdrennan/productor_app
 
-RUN apt-get update --allow-releaseinfo-change -qq && apt-get install -y \
-  libc6-dev \
-  git-core \
-  libssl-dev \
-  libcurl4-openssl-dev \
-  libxml2-dev \
-  pandoc \
-  libpq-dev \
-  python3.6 \
-  virtualenv \
-  python3-pip \
-  python3-venv \
-  libssl-dev \
-  postgresql-client \
-  libudunits2-dev \
-  libsasl2-dev
+COPY ./productorapp /home/productorapp
 
-RUN R -e "install.packages('devtools')"
-RUN R -e "install.packages('tidyverse')"
-RUN R -e "install.packages('glue')"
-RUN R -e "install.packages('fs')"
-RUN R -e "install.packages('rvest')"
-RUN R -e "install.packages('lubridate')"
-RUN R -e "install.packages('tidytext')"
-RUN R -e "install.packages('purrr')"
-RUN R -e "install.packages('jsonlite')"
-RUN R -e "install.packages('tictoc')"
-RUN R -e "install.packages('ipify')"
-RUN R -e "install.packages('jose')"
-RUN R -e "install.packages('sourcetools')"
-RUN R -e "install.packages('mongolite')"
-RUN R -e "install.packages('ggthemes')"
-RUN R -e "install.packages('shinydashboard')"
-RUN R -e "install.packages('shiny')"
-RUN R -e "install.packages('future')"
-RUN R -e "install.packages('DT')"
-RUN R -e "install.packages('shinyBS')"
-RUN R -e "install.packages('shinycssloaders')"
+RUN R -e "setwd('/home/productorapp'); devtools::install()"
+
