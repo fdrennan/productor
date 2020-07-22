@@ -1,5 +1,7 @@
 library(glue)
+library(fs)
 
+setwd(file.path(Sys.getenv('PRODUCTOR_HOME'), 'nginx'))
 NGINX_HOST_NAME <- Sys.getenv('NGINX_HOST_NAME')
 
 nginx_conf <- glue('
@@ -35,8 +37,8 @@ http {
 }', .open='(', .close=')')
 
 
-
-write(nginx_conf, file = file.path(Sys.getenv('PRODUCTOR_HOME'), 'shiny', 'nginx.conf'))
+file.remove('nginx.conf')
+write(nginx_conf, file = file.path(Sys.getenv('PRODUCTOR_HOME'), 'nginx', 'nginx.conf'))
 
 
 

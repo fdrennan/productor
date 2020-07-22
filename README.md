@@ -4,10 +4,12 @@
 If using in production, add `.productor.conf` to your `.gitignore` file in the home directory.
 ```
 # MUST UPDATE FOR YOUR SYSTEM, GET YOUR LOCAL IP ADDRESS (STARTING WITH 192, though ifconfig)
+# Use the following command to get your IP
+# ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'
 PRODUCTOR_HOME=/Users/fdrennan/productor
-NGINX_HOST_NAME=192.168.0.33
-POSTGRES_HOST=192.168.0.33
-AIRFLOW_HOST=192.168.0.33
+NGINX_HOST_NAME=192.168.0.33 #  ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'
+POSTGRES_HOST=192.168.0.33   #  ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'
+AIRFLOW_HOST=192.168.0.33    #  ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'
 
 
 # OPTIONAL

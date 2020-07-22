@@ -1,12 +1,4 @@
-library(shiny)
-library(shinydashboard)
-library(httr)
-library(jsonlite)
-library(magrittr)
-library(shinycssloaders)
-library(glue)
-
-
+library(productorapp)
 
 options(shiny.sanitize.errors = FALSE)
 
