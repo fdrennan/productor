@@ -1,5 +1,15 @@
 # PRODUCTOR 
 
+![](images/1_airflow_home.png)
+![](images/2_upsert_dag.png)
+![](images/3_dag_code.png)
+![](images/4_upsert_r.png)
+![](images/5_data_inserted.png)
+![](images/6_api_package_downloads.png)
+![](images/7_shiny_tdvdl.png)
+![](images/8_shiny_results.png)
+
+
 ## Update `.productor.conf`
 If using in production, add `.productor.conf` to your `.gitignore` file in the home directory.
 ```

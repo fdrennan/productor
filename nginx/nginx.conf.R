@@ -9,6 +9,9 @@ events {}
 
 http {
     
+    fastcgi_read_timeout 900;
+    proxy_read_timeout 900;
+    
     upstream backend {
         server (NGINX_HOST_NAME):8000;
         server (NGINX_HOST_NAME):8001;

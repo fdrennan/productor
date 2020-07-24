@@ -26,6 +26,7 @@ ui <- dashboardPage(
       tabItem(
         tabName = 'dashboard',
         fluidRow(
+          actionButton("goButton", "Go!"),
           spinnerbox(plotOutput("tidyverseDownloads"), 12)
         )
       ),
@@ -43,6 +44,7 @@ ui <- dashboardPage(
 
 server <- function(input, output) {
   output$tidyverseDownloads <- renderPlot({
+    input$goButton
     plot_tidyverse_downloads()
   })
 
