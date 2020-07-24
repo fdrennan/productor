@@ -1,5 +1,22 @@
 # PRODUCTOR 
 
+This project was created to be a template for a data science project. Out of the box, you get fully connected Airflow,
+Postgres, R Packages, load balanced APIs through NGINX, and Shiny knitted together by Docker.
+
+When the project is built, go to `localhost:8080` and turn on the `upsert_tidyverse_data` dag.
+
+This will take data from the `dlstats` package and upsert the data into Postgres. 
+
+See the following files. Airflow doesn't have a native R executor, so you need to wrap the `Rscript` argument in a 
+bash script. `airflow/dags/productor_basic.py` executes `airflow/scripts/R/upsert_tidyverse_data`, airflow bash script
+which kicks off `airflow/scripts/R/upsert_tidyverse_data.R`
+
+```
+airflow/dags/productor_basic.py
+airflow/scripts/R/upsert_tidyverse_data
+airflow/scripts/R/upsert_tidyverse_data.R
+```
+
 ![](images/1_airflow_home.png)
 ![](images/2_upsert_dag.png)
 ![](images/3_dag_code.png)
