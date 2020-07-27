@@ -8,6 +8,7 @@ tryCatch(expr = {
 })
 
 NGINX_HOST_NAME <- Sys.getenv('NGINX_HOST_NAME')
+LOCALHOST_IP <- Sys.getenv('LOCALHOST_IP')
 
 nginx_conf <- glue('
 events {}
@@ -18,11 +19,11 @@ http {
     proxy_read_timeout 900;
     
     upstream backend {
-        server api_one:8000;
-        server api_two:8000;
-        server api_three:8000;
-        server api_four:8000;
-        server api_five:8000;
+        server (LOCALHOST_IP):8002;
+        server (LOCALHOST_IP):8003;
+        server (LOCALHOST_IP):8004;
+        server (LOCALHOST_IP):8005;
+        server (LOCALHOST_IP):8006;
     }
 
     server {
