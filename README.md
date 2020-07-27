@@ -3,32 +3,6 @@
 This project was created to be a template for a data science project. Out of the box, you get fully connected Airflow,
 Postgres, R Packages, load balanced APIs through NGINX, and Shiny knitted together by Docker.
 
-## Update `.productor.conf`
-If using in production, add `.productor.conf` to your `.gitignore` file in the home directory.
-
-Copy paste the result of the command `ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'` to get the ip address of your
-local mackine.
-```
-# MUST UPDATE FOR YOUR SYSTEM, GET YOUR LOCAL IP ADDRESS (OFTEN STARTING WITH 192, though ifconfig)
-# Use the following command to get your IP
-# USE ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'  TO GET YOUR IP TO REPLACE IN HOST NAMES
-PRODUCTOR_HOME=/Users/fdrennan/productor
-NGINX_HOST_NAME=192.168.0.33 
-POSTGRES_HOST=192.168.0.33   
-AIRFLOW_HOST=192.168.0.33    
-
-
-# OPTIONAL
-AIRFLOW__CORE__FERNET_KEY=lPWLoH65nZPnY6O-SrhlQsYBF1I2VuPx8NYTucdWpD4=%
-AIRFLOW_USER=airflow
-AIRFLOW_PASSWORD=airflow
-AIRFLOW_DB=airflow
-
-PRODUCTOR_POSTGRES_USER=admin
-PRODUCTOR_POSTGRES_PASSWORD=password
-PRODUCTOR_POSTGRES_DB=public
-POSTGRES_PORT=5432
-```
 
 ## Building the Images
 ``` 
