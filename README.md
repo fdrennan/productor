@@ -40,7 +40,7 @@ bash script. (1) is the DAG which uses a Bash Executor to run (2), a bash file w
 2. Bash Script: `./airflow/scripts/R/upsert_tidyverse_data`
 3. R Code: `./airflow/scripts/R/upsert_tidyverse_data.R`
 
-1. The DAG
+### The DAG (1)
 ```
 import airflow
 from airflow.operators.bash_operator import BashOperator
@@ -73,7 +73,7 @@ task_1
 ```
 
 
-2. The Bash Wrapper
+### The Bash Wrapper (2)
 ```
 #!/bin/bash
 
@@ -82,7 +82,7 @@ cd /home/scripts/R/r_files
 
 ```
 
-3. The R Script
+### The R Script (3)
 ```
 library(productor)
 
