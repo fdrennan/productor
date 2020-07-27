@@ -14,11 +14,11 @@ http {
     proxy_read_timeout 900;
     
     upstream backend {
-        server (NGINX_HOST_NAME):8000;
-        server (NGINX_HOST_NAME):8001;
-        server (NGINX_HOST_NAME):8002;
-        server (NGINX_HOST_NAME):8003;
-        server (NGINX_HOST_NAME):8004;
+        server redditapione:8000;
+        server redditapitwo:8000;
+        server redditapithree:8000;
+        server redditapifour:8000;
+        server redditapifive:8000;
     }
 
     server {
@@ -26,12 +26,9 @@ http {
         listen 80;
 
         location / {
-            proxy_pass http://(NGINX_HOST_NAME):3000;
+            proxy_pass http://shiny:3838;
         }
         
-        location /pgadmin {
-            proxy_pass http://(NGINX_HOST_NAME):8081;
-        }
 
         location /api/ {
             proxy_pass http://backend/;
