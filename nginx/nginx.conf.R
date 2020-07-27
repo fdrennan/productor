@@ -1,7 +1,11 @@
 library(glue)
 library(fs)
 
-setwd(file.path(Sys.getenv('PRODUCTOR_HOME'), 'nginx'))
+tryCatch(expr = {
+    setwd(file.path(Sys.getenv('PRODUCTOR_HOME'), 'nginx'))
+}, error = function(err) {
+    message(as.character(err))
+})
 
 NGINX_HOST_NAME <- Sys.getenv('NGINX_HOST_NAME')
 
