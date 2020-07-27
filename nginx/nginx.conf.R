@@ -42,7 +42,11 @@ http {
 }', .open='(', .close=')')
 
 
-file.remove('nginx.conf')
+tryCatch(expr = {
+    file.remove('nginx.conf')
+}, error = function(err) {
+    message(as.character(err))
+})
 write(nginx_conf, file = file.path(Sys.getenv('PRODUCTOR_HOME'), 'nginx', 'nginx.conf'))
 
 
