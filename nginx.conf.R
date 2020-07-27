@@ -47,6 +47,8 @@ http {
 }', .open='(', .close=')')
 
 
+print(nginx_conf)
+
 tryCatch(expr = {
     file.remove('nginx.conf')
 }, error = function(err) {
