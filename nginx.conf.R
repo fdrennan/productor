@@ -39,7 +39,7 @@ http {
             proxy_pass http://backend/;
         }
         
-        location /rstudio/ {
+        location /rstudio {
             proxy_pass http://rstudio:8787;
         }
 
