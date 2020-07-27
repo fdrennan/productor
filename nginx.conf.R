@@ -18,11 +18,11 @@ http {
     proxy_read_timeout 900;
     
     upstream backend {
-        server redditapione:8000;
-        server redditapitwo:8000;
-        server redditapithree:8000;
-        server redditapifour:8000;
-        server redditapifive:8000;
+        server api_one:8000;
+        server api_two:8000;
+        server api_three:8000;
+        server api_four:8000;
+        server api_five:8000;
     }
 
     server {
