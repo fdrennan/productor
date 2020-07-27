@@ -157,7 +157,15 @@ services:
       - './shiny/shiny-server.conf:/etc/shiny-server/shiny-server.conf'
       - './shiny/app.R:/app/app.R'
       - './shiny/.env:/app/.Renviron'
-
+  rstudio:
+    environment:
+      - USER=rstudio
+      - PASSWORD=qwerty
+      - MY_VAR=1
+    image: "rocker/verse:latest"
+    ports:
+     - 8787:8787
+     
 volumes:
   productor_volume: {}
   airflow_postgres:
