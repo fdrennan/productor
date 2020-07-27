@@ -20,5 +20,15 @@ RUN apt-get update --allow-releaseinfo-change -qq && apt-get install -y \
 
 RUN R -e "install.packages('devtools')"
 RUN R -e "install.packages('tidyverse')"
+RUN R -e "install.packages('RPostgres')"
+RUN R -e "install.packages('DBI')"
+RUN R -e "install.packages('glue')"
+RUN R -e "install.packages('fs')"
+RUN R -e "install.packages('jsonlite')"
+RUN R -e "install.packages('tictoc')"
+RUN R -e "install.packages('openxlsx')"
+RUN R -e "install.packages('dlstats')"
+RUN R -e "install.packages('dbx')"
+
 
 
