@@ -2,6 +2,7 @@ library(glue)
 library(fs)
 
 setwd(file.path(Sys.getenv('PRODUCTOR_HOME'), 'nginx'))
+
 NGINX_HOST_NAME <- Sys.getenv('NGINX_HOST_NAME')
 
 nginx_conf <- glue('

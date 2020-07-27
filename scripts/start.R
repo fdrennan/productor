@@ -2,7 +2,12 @@ library(fs)
 
 library(fs)
 
-setwd(Sys.getenv('PRODUCTOR_HOME'))
+tryCatch(
+  setwd(Sys.getenv('PRODUCTOR_HOME')),
+  error = function(err) {
+    message('Already in PRODUCTOR_HOME')
+  }
+)
 
 dirs_to_update <- c(
   'airflow',
@@ -17,7 +22,12 @@ dirs_to_update <- c(
 
 system('Rscript nginx/nginx.conf.R')
 
-setwd(Sys.getenv('PRODUCTOR_HOME'))
+tryCatch(
+  setwd(Sys.getenv('PRODUCTOR_HOME')),
+  error = function(err) {
+    message('Already in PRODUCTOR_HOME')
+  }
+)
 
 for (dir in dirs_to_update) {
   file_copy('.productor.conf', file.path(dir, '.env'), overwrite = TRUE)
