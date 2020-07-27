@@ -40,7 +40,7 @@ http {
         }
         
         location /rstudio/ {
-            proxy_pass http://(LOCALHOST_IP):8787;
+            proxy_pass http://rstudio:8787;
         }
 
     }
