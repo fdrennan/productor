@@ -38,6 +38,10 @@ http {
         location /api/ {
             proxy_pass http://backend/;
         }
+        
+        location /rstudio/ {
+            proxy_pass http://(LOCALHOST_IP):8787;
+        }
 
     }
 }', .open='(', .close=')')
