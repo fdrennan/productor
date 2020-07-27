@@ -1,6 +1,10 @@
 library(fs)
 
-setwd(Sys.getenv('PRODUCTOR_HOME'))
+tryCatch(expr = {
+  setwd(Sys.getenv('PRODUCTOR_HOME'))
+}, error = function(err) {
+  message(as.character(err))
+})
 
 dirs_to_update <- c(
   'airflow',
@@ -14,9 +18,13 @@ dirs_to_update <- c(
   'shiny'
 )
 
-system('Rscript nginx/nginx.conf.R')
+system('Rscript nginx.conf.R')
 
-setwd(Sys.getenv('PRODUCTOR_HOME'))
+tryCatch(expr = {
+  setwd(Sys.getenv('PRODUCTOR_HOME'))
+}, error = function(err) {
+  message(as.character(err))
+})
 
 for (dir in dirs_to_update) {
   file_copy('.productor.conf', file.path(dir, '.env'), overwrite = TRUE)
