@@ -5,7 +5,7 @@ PRODUCTOR_HOME=getwd()
 
 local_ip <- tryCatch(expr = {
   system("ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'", intern = TRUE)
-}, error = function(err) {
+}, finally = {
   system("ifconfig enp1s0 | grep inet | grep -v inet6 | awk '{print $2}'", intern = TRUE)
 })
 
