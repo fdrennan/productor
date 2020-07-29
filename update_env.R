@@ -3,11 +3,13 @@ library(glue)
 
 PRODUCTOR_HOME=getwd()
 
-local_ip <- tryCatch(expr = {
-  system("ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'", intern = TRUE)
-}, finally = {
-  system("ifconfig enp1s0 | grep inet | grep -v inet6 | awk '{print $2}'", intern = TRUE)
-})
+# local_ip <- tryCatch(expr = {
+#   system("ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'", intern = TRUE)
+# }, finally = {
+#   system("ifconfig enp1s0 | grep inet | grep -v inet6 | awk '{print $2}'", intern = TRUE)
+# })
+
+local_ip <- '192.168.0.33'
 
 productor_conf <- glue(
 "
