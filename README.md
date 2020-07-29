@@ -14,6 +14,11 @@ docker-compose up -d --build productor_initdb
 
 ```
 
+# Update environment variables in update_env
+```
+Rscript update_env.R
+```
+
 # Starting in Detached Mode
 ```
 docker-compose up -d
