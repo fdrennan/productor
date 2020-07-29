@@ -1,50 +1,22 @@
-library(fs)
+installed_packages <- installed.packages()
 
-library(fs)
-
-tryCatch(
-  setwd(Sys.getenv('PRODUCTOR_HOME')),
-  error = function(err) {
-    message('Already in PRODUCTOR_HOME')
-  }
-)
-
-dirs_to_update <- c(
-  'airflow',
-  'glances',
-  'nginx',
-  'postgres',
-  'scripts',
-  'productor',
-  'plumber_api',
-  'shiny'
-)
-
-system('Rscript nginx/nginx.conf.R')
-
-tryCatch(
-  setwd(Sys.getenv('PRODUCTOR_HOME')),
-  error = function(err) {
-    message('Already in PRODUCTOR_HOME')
-  }
-)
-
-for (dir in dirs_to_update) {
-  file_copy('.productor.conf', file.path(dir, '.env'), overwrite = TRUE)
-  file_copy('.productor.conf', file.path(dir, '.Renviron'), overwrite = TRUE)
+if(!'fs' %in% installed_packages[,1]) {
+  install.packages('fs', repos = "http://cran.us.r-project.org")
 }
 
-file_copy('.productor.conf', '.env', overwrite = TRUE)
-file_copy('.productor.conf', '.Renviron', overwrite = TRUE)
+if(!'glue' %in% installed_packages[,1]) {
+  install.packages('glue', repos = "http://cran.us.r-project.org")
+}
 
+library(fs)
 
-system('docker-compose -f airflow/docker-compose.yaml up -d --build productor_postgres')
-system('docker-compose -f airflow/docker-compose.yaml up -d --build productor_initdb')
-
-system('docker-compose -f postgres/docker-compose.yaml up --force-recreate -d')
-system('docker-compose -f airflow/docker-compose.yaml up --force-recreate -d')
-system('docker-compose -f plumber_api/docker-compose.yaml up --force-recreate -d')
-system('docker-compose -f nginx/docker-compose.yaml up --force-recreate -d')
-system('docker-compose -f shiny/docker-compose.yaml up --force-recreate -d')
+tryCatch(
+  setwd(Sys.getenv('PRODUCTOR_HOME')),
+  error = function(err) {
+    message('Already in PRODUCTOR_HOME')
+  }
+)
+system('Rscript update_env.R')
+system('docker-compose -f docker-compose.yaml up --force-recreate -d')
 
 

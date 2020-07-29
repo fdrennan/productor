@@ -7,23 +7,23 @@ tryCatch(expr = {
     message(as.character(err))
 })
 
-NGINX_HOST_NAME <- Sys.getenv('NGINX_HOST_NAME')
 LOCALHOST_IP <- Sys.getenv('LOCALHOST_IP')
 
 nginx_conf <- glue('
 events {}
 
 http {
-    
+    autoindex on;
+    autoindex_exact_size off;
     fastcgi_read_timeout 900;
     proxy_read_timeout 900;
     
     upstream backend {
-        server (LOCALHOST_IP):8002;
-        server (LOCALHOST_IP):8003;
-        server (LOCALHOST_IP):8004;
-        server (LOCALHOST_IP):8005;
-        server (LOCALHOST_IP):8006;
+        server api_one:8000;
+        server api_two:8000;
+        server api_three:8000;
+        server api_four:8000;
+        server api_five:8000;
     }
 
     server {
@@ -52,7 +52,9 @@ print(nginx_conf)
 tryCatch(expr = {
     file.remove('nginx.conf')
 }, error = function(err) {
-    message(as.character(err))
+    message('nginx.conf does not exist')
+}, warning = function(warn) {
+    message('Whatevs my dude')
 })
 
 write(nginx_conf, file = file.path(Sys.getenv('PRODUCTOR_HOME'), 'nginx', 'nginx.conf'))

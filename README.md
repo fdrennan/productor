@@ -29,6 +29,11 @@ docker-compose up
 docker-compose down
 ```
 
+# Remove Orphans
+```
+docker-compose up --remove-orphans
+```
+
 # Creating a DAG
 
 When the project is built, go to `localhost:8080` and turn on the `upsert_tidyverse_data` dag. This will execute the DAG (number 1 below) which ultimately executes (3), the R Script which grabs data from the `dlstats` package and upsert the data into Postgres. 

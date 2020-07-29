@@ -55,7 +55,7 @@ services:
       - ./airflow/dags:/root/airflow/dags
       - ./airflow/scripts:/home/scripts
       - ./airflow/plugins:/root/airflow/plugins
-      - ./airflow/.env:/root/.Renviron
+      - ./.env:/root/.Renviron
       - productor_airflow_logs:/root/airflow/logs
     command: airflow scheduler
   web:
@@ -78,7 +78,7 @@ services:
      - "8002:8000"
     working_dir: /app
     volumes:
-      - ./plumber_api/.env:/app/.Renviron
+      - ./.env:/app/.Renviron
       - ./plumber_api/plumber.R:/app/plumber.R
       - ./plumber_api/notebooks:/app/notebooks
   api_two:
@@ -89,7 +89,7 @@ services:
      - "8003:8000"
     working_dir: /app
     volumes:
-      - ./plumber_api/.env:/app/.Renviron
+      - ./.env:/app/.Renviron
       - ./plumber_api/plumber.R:/app/plumber.R
       - ./plumber_api/notebooks:/app/notebooks
   api_three:
@@ -100,7 +100,7 @@ services:
      - "8004:8000"
     working_dir: /app
     volumes:
-      - ./plumber_api/.env:/app/.Renviron
+      - ./.env:/app/.Renviron
       - ./plumber_api/plumber.R:/app/plumber.R
       - ./plumber_api/notebooks:/app/notebooks
   api_four:
@@ -111,7 +111,7 @@ services:
      - "8005:8000"
     working_dir: /app
     volumes:
-      - ./plumber_api/.env:/app/.Renviron
+      - ./.env:/app/.Renviron
       - ./plumber_api/plumber.R:/app/plumber.R
       - ./plumber_api/notebooks:/app/notebooks
   api_five:
@@ -122,7 +122,7 @@ services:
      - "8006:8000"
     working_dir: /app
     volumes:
-      - ./plumber_api/.env:/app/.Renviron
+      - ./.env:/app/.Renviron
       - ./plumber_api/plumber.R:/app/plumber.R
       - ./plumber_api/notebooks:/app/notebooks
   productor_db:
@@ -156,12 +156,11 @@ services:
     volumes:
       - './shiny/shiny-server.conf:/etc/shiny-server/shiny-server.conf'
       - './shiny/app.R:/app/app.R'
-      - './shiny/.env:/app/.Renviron'
+      - './.env:/app/.Renviron'
   rstudio:
     environment:
-      - USER=rstudio
-      - PASSWORD=qwerty
-      - MY_VAR=1
+      - USER=${RSTUDIO_USER}
+      - PASSWORD=${RSTUDIO_PW}
     image: "rocker/verse:latest"
     ports:
      - 8787:8787
