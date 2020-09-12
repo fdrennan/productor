@@ -1,4 +1,4 @@
-install.packages(c('fs', 'glue'))
+install.packages(c('fs', 'glue', 'devtools'))
 devtools::install_github("gregce/ipify")
 
 library(ipify)
