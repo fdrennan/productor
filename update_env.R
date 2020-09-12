@@ -1,5 +1,5 @@
-install.packages(c('fs', 'glue', 'devtools'))
-devtools::install_github("gregce/ipify")
+# install.packages(c('fs', 'glue', 'devtools'))
+# devtools::install_github("gregce/ipify")
 
 library(ipify)
 library(fs)
@@ -7,7 +7,9 @@ library(glue)
 PRODUCTOR_HOME=getwd()
 
 if (Sys.getenv('SERVER') == "") {
-  Sys.setenv('SERVER'='missing')
+  SERVER = 'MISSING'
+} else {
+  SERVER = Sys.getenv('SERVER')
 }
 
 # local_ip <- tryCatch(expr = {
@@ -20,6 +22,7 @@ local_ip <- ipify::get_ip()
 
 productor_conf <- glue(
 "
+SERVER={SERVER}
 PRODUCTOR_HOME={PRODUCTOR_HOME}
 NGINX_HOST_NAME=web
 POSTGRES_HOST=productor_db

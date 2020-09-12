@@ -1,10 +1,13 @@
 library(productorapp)
 # plan(multiprocess)
 
+
+
 options(shiny.sanitize.errors = FALSE)
+SERVER = Sys.getenv('SERVER')
 
 ui <- dashboardPage(
-  dashboardHeader(title = "PRODUCTOR"),
+  dashboardHeader(title = paste0('PRODUCTOR ', SERVER)),
   dashboardSidebar(
     sidebarMenu(
       menuItem(
