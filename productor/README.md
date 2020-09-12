@@ -1,5 +1,9 @@
 # INSTALLATION GUIDE
 
+<!-- badges: start -->
+  [![Travis build status](https://travis-ci.com/fdrennan/productor.svg?branch=master)](https://travis-ci.com/fdrennan/productor)
+<!-- badges: end -->
+  
 `redditor` is a wrapper for the `praw` library in Python, so we need to do some configuration to get R working with reticulate. Listen, reticulate can be a headache. So, if you have issues, please let me know. We can both update the documentation as well as get you up and running. 
 
 # Installing in RServer

@@ -1,6 +1,9 @@
+install.packages(c('fs', 'glue'))
+devtools::install_github("gregce/ipify")
+
+library(ipify)
 library(fs)
 library(glue)
-
 PRODUCTOR_HOME=getwd()
 
 # local_ip <- tryCatch(expr = {
@@ -9,7 +12,7 @@ PRODUCTOR_HOME=getwd()
 #   system("ifconfig enp1s0 | grep inet | grep -v inet6 | awk '{print $2}'", intern = TRUE)
 # })
 
-local_ip <- '192.168.0.33'
+local_ip <- ipify::get_ip()
 
 productor_conf <- glue(
 "

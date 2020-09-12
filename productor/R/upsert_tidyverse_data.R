@@ -1,7 +1,8 @@
 #' @export upsert_tidyverse_data
 upsert_tidyverse_data <- function(con) {
   
-  stats <- cran_stats(c('tidyverse')) %>% 
+  stats <- 
+    cran_stats(c('tidyverse')) %>% 
     transmute(
       id = glue('{start}-{package}'),
       start_date = start,
@@ -35,4 +36,5 @@ upsert_tidyverse_data <- function(con) {
     records = stats, 
     where_cols = c("id")
   )
+  
 }
