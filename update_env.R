@@ -6,6 +6,10 @@ library(fs)
 library(glue)
 PRODUCTOR_HOME=getwd()
 
+if (Sys.getenv('SERVER') == "") {
+  Sys.setenv('SERVER'='missing')
+}
+
 # local_ip <- tryCatch(expr = {
 #   system("ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'", intern = TRUE)
 # }, finally = {
