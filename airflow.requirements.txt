@@ -124,3 +124,8 @@ WTForms==2.2.1
 zipp==3.0.0
 zope.deprecation==4.4.0
 
+SQLAlchemy-JSONField
+typing_extensions
+cattrs
+python-nvd3
+python-slugify
