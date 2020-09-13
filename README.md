@@ -150,3 +150,6 @@ https://blog.baudson.de/blog/stop-and-remove-all-docker-containers-and-images
 
 docker container stop $(docker container ls -aq)
 docker container rm $(docker container ls –aq)
+
+#### Specify filepath
+docker-compose -f ~/sandbox/rails/docker-compose.yml pull db

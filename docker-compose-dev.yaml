@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   productor_webserver:
-    image: fdrennan/productor_rpy
+    image: fdrennan/productor_rpy:dev
     restart: always
     depends_on:
       - productor_initdb
@@ -30,7 +30,7 @@ services:
     volumes:
       - airflow_postgres:/var/lib/postgresql/data
   productor_initdb:
-    image: fdrennan/productor_rpy
+    image: fdrennan/productor_rpy:dev
     restart: always
     depends_on:
       - productor_postgres
@@ -41,7 +41,7 @@ services:
       AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@172.17.0.1:5439/airflow
     command: airflow initdb
   productor_scheduler:
-    image: fdrennan/productor_rpy
+    image: fdrennan/productor_rpy:dev
     restart: always
     depends_on:
       - productor_webserver
@@ -71,7 +71,7 @@ services:
      - NGINX_HOST_NAME=192.168.0.33
     command: /bin/bash -c "envsubst '$$NGINX_HOST_NAME' < /etc/nginx/conf.d/mysite.template > /etc/nginx/nginx.conf && exec nginx -g 'daemon off;'"
   api_one:
-    image: fdrennan/productor_api
+    image: fdrennan/productor_api:dev
     command: /app/plumber.R
     restart: always
     ports:
@@ -82,7 +82,7 @@ services:
       - ./plumber_api/plumber.R:/app/plumber.R
       - ./plumber_api/notebooks:/app/notebooks
   api_two:
-    image: fdrennan/productor_api
+    image: fdrennan/productor_api:dev
     command: /app/plumber.R
     restart: always
     ports:
@@ -93,7 +93,7 @@ services:
       - ./plumber_api/plumber.R:/app/plumber.R
       - ./plumber_api/notebooks:/app/notebooks
   api_three:
-    image: fdrennan/productor_api
+    image: fdrennan/productor_api:dev
     command: /app/plumber.R
     restart: always
     ports:
@@ -104,7 +104,7 @@ services:
       - ./plumber_api/plumber.R:/app/plumber.R
       - ./plumber_api/notebooks:/app/notebooks
   api_four:
-    image: fdrennan/productor_api
+    image: fdrennan/productor_api:dev
     command: /app/plumber.R
     restart: always
     ports:
@@ -115,7 +115,7 @@ services:
       - ./plumber_api/plumber.R:/app/plumber.R
       - ./plumber_api/notebooks:/app/notebooks
   api_five:
-    image: fdrennan/productor_api
+    image: fdrennan/productor_api:dev
     command: /app/plumber.R
     restart: always
     ports:
@@ -145,7 +145,7 @@ services:
       - POSTGRES_DB=${PRODUCTOR_POSTGRES_DB}
   shiny:
     container_name: productor_app
-    image: fdrennan/productor_app:latest
+    image: fdrennan/productor_app:dev
     restart: always
     user: 'root'
     # Uncomment the lines below to disable application logs STDOUT output
@@ -161,7 +161,7 @@ services:
     environment:
       - USER=${RSTUDIO_USER}
       - PASSWORD=${RSTUDIO_PW}
-    image: rocker/verse:latest
+    image: "rocker/verse:latest"
     ports:
      - 8787:8787
      
