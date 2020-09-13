@@ -9,11 +9,13 @@ library(ipify)
 library(fs)
 library(glue)
 
-PRODUCTOR_HOME=getwd()docker 
+PRODUCTOR_HOME=getwd() 
 if (Sys.getenv('SERVER') == "") {
   SERVER = 'MISSING'
+  local_ip <- ipify::get_ip()
 } else {
   SERVER = Sys.getenv('SERVER')
+  local_ip <- '192.168.0.33'
 }
 
 # local_ip <- tryCatch(expr = {
@@ -22,7 +24,7 @@ if (Sys.getenv('SERVER') == "") {
 #   system("ifconfig enp1s0 | grep inet | grep -v inet6 | awk '{print $2}'", intern = TRUE)
 # })
 
-local_ip <- ipify::get_ip()
+
 
 productor_conf <- glue(
 "

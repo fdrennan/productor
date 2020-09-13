@@ -155,7 +155,7 @@ docker container rm $(docker container ls –aq)
 https://hub.docker.com/u/fdrennan
 
 #### Specify filepath
-docker-compose -f ~/sandbox/rails/docker-compose.yml pull db
+docker-compose -f docker-compose-beta.yaml up
 
 
 
@@ -176,7 +176,12 @@ docker push fdrennan/productor_api:latest
 ```
 
 ```
-docker build -t productor_rpy_basis --file ./DockerfileRpyBasis .
+docker build -t productor_rpy_basis --file ./DockerfileRpy .
 docker tag productor_rpy_basis:latest fdrennan/productor_rpy:latest
 docker push fdrennan/productor_rpy:latest
 ```
+
+docker-compose -f docker-compose-dev.yaml pull
+docker-compose -f docker-compose-dev.yaml up -d --build productor_postgres
+docker-compose -f docker-compose-dev.yaml up -d --build productor_initdb
+docker-compose -f docker-compose-dev.yaml up --remove-orphans
