@@ -1,11 +1,15 @@
-install.packages(c('fs', 'glue', 'devtools'))
-devtools::install_github("gregce/ipify")
+
+if (stringr::str_detect(getwd(), 'home')) {
+  install.packages(c('fs', 'glue', 'devtools'))
+  devtools::install_github("gregce/ipify") 
+}
+
 
 library(ipify)
 library(fs)
 library(glue)
-PRODUCTOR_HOME=getwd()
 
+PRODUCTOR_HOME=getwd()docker 
 if (Sys.getenv('SERVER') == "") {
   SERVER = 'MISSING'
 } else {
