@@ -1,5 +1,5 @@
 
-if (stringr::str_detect(getwd(), 'home')) {
+if (!all(c('fs', 'glue', 'devtools', 'ipify') %in% installed.packages()[,1])) {
   install.packages(c('fs', 'glue', 'devtools'))
   devtools::install_github("gregce/ipify") 
 }
