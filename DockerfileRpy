@@ -30,21 +30,21 @@ COPY ./airflow.requirements.txt /root/airflow.requirements.txt
 
 RUN pip install --no-deps --trusted-host pypi.python.org -r airflow.requirements.txt
 
-# WORKDIR /home/scripts
+WORKDIR /home/scripts
 
-# RUN R -e "install.packages('devtools')"
-# RUN R -e "install.packages('tidyverse')"
-# RUN R -e "install.packages('RPostgres')"
-# RUN R -e "install.packages('DBI')"
-# RUN R -e "install.packages('glue')"
-# RUN R -e "install.packages('fs')"
-# RUN R -e "install.packages('jsonlite')"
-# RUN R -e "install.packages('tictoc')"
-# RUN R -e "install.packages('openxlsx')"
-# RUN R -e "install.packages('dlstats')"
-# RUN R -e "install.packages('dbx')"
+RUN R -e "install.packages('devtools')"
+RUN R -e "install.packages('tidyverse')"
+RUN R -e "install.packages('RPostgres')"
+RUN R -e "install.packages('DBI')"
+RUN R -e "install.packages('glue')"
+RUN R -e "install.packages('fs')"
+RUN R -e "install.packages('jsonlite')"
+RUN R -e "install.packages('tictoc')"
+RUN R -e "install.packages('openxlsx')"
+RUN R -e "install.packages('dlstats')"
+RUN R -e "install.packages('dbx')"
 
-# COPY ./productor /home/productor
+COPY ./productor /home/productor
 
-# RUN R -e "setwd('/home/productor'); devtools::install(dependencies=TRUE)"
+RUN R -e "setwd('/home/productor'); devtools::install(dependencies=TRUE)"
 
