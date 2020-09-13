@@ -10,12 +10,12 @@ library(fs)
 library(glue)
 
 PRODUCTOR_HOME=getwd() 
-if (Sys.getenv('SERVER') == "") {
+if (Sys.getenv('SERVER') == "MISSING") {
   SERVER = 'MISSING'
-  local_ip <- ipify::get_ip()
+  local_ip <- '192.168.0.33'
 } else {
   SERVER = Sys.getenv('SERVER')
-  local_ip <- '192.168.0.33'
+  local_ip <- ipify::get_ip()
 }
 
 # local_ip <- tryCatch(expr = {
@@ -27,7 +27,7 @@ if (Sys.getenv('SERVER') == "") {
 
 
 productor_conf <- glue(
-"
+  "
 SERVER={SERVER}
 PRODUCTOR_HOME={PRODUCTOR_HOME}
 NGINX_HOST_NAME=web
