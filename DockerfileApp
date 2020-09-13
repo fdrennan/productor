@@ -1,4 +1,34 @@
-FROM fdrennan/productor_app
+FROM rocker/shiny-verse
+
+RUN apt-get update --allow-releaseinfo-change -qq && apt-get install -y \
+  libc6-dev \
+  git-core \
+  libssl-dev \
+  libcurl4-openssl-dev \
+  libxml2-dev \
+  pandoc \
+  libpq-dev \
+  python3.6 \
+  virtualenv \
+  python3-pip \
+  python3-venv \
+  libssl-dev \
+  postgresql-client \
+  libudunits2-dev \
+  libsasl2-dev
+
+RUN R -e "install.packages('devtools')"
+RUN R -e "install.packages('tidyverse')"
+RUN R -e "install.packages('shiny')"
+RUN R -e "install.packages('shinydashboard')"
+RUN R -e "install.packages('httr')"
+RUN R -e "install.packages('jsonlite')"
+RUN R -e "install.packages('shinycssloaders')"
+RUN R -e "install.packages('ggplot2')"
+RUN R -e "install.packages('glue')"
+RUN R -e "install.packages('scales')"
+RUN R -e "install.packages('promises')"
+RUN R -e "install.packages('future')"
 
 COPY ./productorapp /home/productorapp
 

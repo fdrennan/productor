@@ -136,6 +136,13 @@ docker tag local-image:tagname new-repo:tagname
 docker push new-repo:tagname
 ```
 
+```
+docker tag productor_rpy:latest fdrennan/productor_app:0.1.0
+docker push new-repo:tagname
+```
+
+
+
 ### Docker Commands 
 ```
 https://blog.baudson.de/blog/stop-and-remove-all-docker-containers-and-images
