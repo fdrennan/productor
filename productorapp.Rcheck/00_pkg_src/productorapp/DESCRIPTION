@@ -6,20 +6,12 @@ Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line,
     Use four spaces when indenting paragraphs within the Description.
-Depends:
-    shiny,
-    shinydashboard,
-    httr,
-    jsonlite,
-    magrittr,
-    shinycssloaders,
-    glue,
-    ggplot2,
-    lubridate,
-    dplyr,
-    scales
-Remotes:
-    fdrennan/drenplot
+Depends: shiny, shinydashboard, httr, jsonlite, magrittr,
+        shinycssloaders, glue, ggplot2, lubridate, dplyr, scales,
+        promises, future
+Remotes: fdrennan/drenplot
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+NeedsCompilation: no
+Packaged: 2020-09-13 23:08:42 UTC; fdrennan
