@@ -186,6 +186,7 @@ docker-compose -f docker-compose-scratch.yaml up -d --build productor_postgres
 docker-compose -f docker-compose-scratch.yaml up -d --build productor_initdb
 docker-compose -f docker-compose-scratch.yaml restart
 docker-compose -f docker-compose-scratch.yaml up
+docker-compose -f docker-compose-scratch.yaml down
 
 docker-compose -f docker-compose-dev.yaml pull
 docker-compose -f docker-compose-dev.yaml up -d --build productor_postgres
