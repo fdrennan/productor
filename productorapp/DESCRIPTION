@@ -18,8 +18,7 @@ Depends:
     lubridate,
     dplyr,
     scales,
-    promises,
-    future
+    drenplot
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
