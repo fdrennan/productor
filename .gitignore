@@ -15,3 +15,4 @@ postgres.tar.gz
 *.remote
 .env
 .Renviron
+*.Rcheck
