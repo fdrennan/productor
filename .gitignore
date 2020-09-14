@@ -16,3 +16,4 @@ postgres.tar.gz
 .env
 .Renviron
 *.Rcheck
+*.gz
