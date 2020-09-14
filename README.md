@@ -181,8 +181,7 @@ docker tag productor_rpy_basis:latest fdrennan/productor_rpy:latest
 docker push fdrennan/productor_rpy:latest
 ```
 
-docker-compose -f docker-compose-dev.yaml pull
-docker-compose -f docker-compose-dev.yaml up -d --build productor_postgres
-docker-compose -f docker-compose-dev.yaml up -d --build productor_initdb
-docker-compose -f docker-compose-dev.yaml up --remove-orphans
-docker-compose -f docker-compose-dev.yaml down
+docker-compose -f docker-compose-scratch.yaml pull
+docker-compose -f docker-compose-scratch.yaml up -d --build productor_postgres
+docker-compose -f docker-compose-scratch.yaml up -d --build productor_initdb
+docker-compose -f docker-compose-scratch.yaml restart
