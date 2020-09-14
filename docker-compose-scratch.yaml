@@ -71,7 +71,7 @@ services:
      - NGINX_HOST_NAME=192.168.0.33
     command: /bin/bash -c "envsubst '$$NGINX_HOST_NAME' < /etc/nginx/conf.d/mysite.template > /etc/nginx/nginx.conf && exec nginx -g 'daemon off;'"
   api_one:
-    image: fdrennan/productor_api:dev
+    image: productor_api_basis
     command: /app/plumber.R
     restart: always
     ports:
@@ -82,7 +82,7 @@ services:
       - ./plumber_api/plumber.R:/app/plumber.R
       - ./plumber_api/notebooks:/app/notebooks
   api_two:
-    image: fdrennan/productor_api:dev
+    image: productor_api_basis
     command: /app/plumber.R
     restart: always
     ports:
@@ -93,7 +93,7 @@ services:
       - ./plumber_api/plumber.R:/app/plumber.R
       - ./plumber_api/notebooks:/app/notebooks
   api_three:
-    image: fdrennan/productor_api:dev
+    image: productor_api_basis
     command: /app/plumber.R
     restart: always
     ports:
@@ -104,7 +104,7 @@ services:
       - ./plumber_api/plumber.R:/app/plumber.R
       - ./plumber_api/notebooks:/app/notebooks
   api_four:
-    image: fdrennan/productor_api:dev
+    image: productor_api_basis
     command: /app/plumber.R
     restart: always
     ports:
@@ -115,7 +115,7 @@ services:
       - ./plumber_api/plumber.R:/app/plumber.R
       - ./plumber_api/notebooks:/app/notebooks
   api_five:
-    image: fdrennan/productor_api:dev
+    image: productor_api_basis
     command: /app/plumber.R
     restart: always
     ports:
