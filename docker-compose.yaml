@@ -63,6 +63,7 @@ services:
     image: nginx
     volumes:
      - ./nginx/nginx.conf:/etc/nginx/conf.d/mysite.template
+     - ./productor_blog/public:/usr/share/nginx/html
     ports:
      - "80:80"
     environment:
