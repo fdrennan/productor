@@ -162,14 +162,14 @@ docker-compose -f docker-compose-beta.yaml up
 # Old Commands. Integrated to DockerHub + Github Hooks
 
 ```
-docker build -t productor_app_basis --file ./DockerfileAppBasis .
+docker build -t productor_app_basis --file ./DockerfileApp .
 docker tag productor_app_basis:latest fdrennan/productor_app:latest
 docker push fdrennan/productor_app:latest
 
 ```
 
 ```
-docker build -t productor_api_basis --file ./DockerfileApiBasis .
+docker build -t productor_api_basis --file ./DockerfileApi .
 docker tag productor_api_basis:latest fdrennan/productor_api:latest
 docker push fdrennan/productor_api:latest
 
@@ -181,8 +181,14 @@ docker tag productor_rpy_basis:latest fdrennan/productor_rpy:latest
 docker push fdrennan/productor_rpy:latest
 ```
 
+docker-compose -f docker-compose-scratch.yaml pull
+docker-compose -f docker-compose-scratch.yaml up -d --build productor_postgres
+docker-compose -f docker-compose-scratch.yaml up -d --build productor_initdb
+docker-compose -f docker-compose-scratch.yaml restart
+docker-compose -f docker-compose-scratch.yaml up
+docker-compose -f docker-compose-scratch.yaml down
+
 docker-compose -f docker-compose-dev.yaml pull
 docker-compose -f docker-compose-dev.yaml up -d --build productor_postgres
 docker-compose -f docker-compose-dev.yaml up -d --build productor_initdb
-docker-compose -f docker-compose-dev.yaml up --remove-orphans
-docker-compose -f docker-compose-dev.yaml down
+docker-compose -f docker-compose-dev.yaml restart

@@ -1,3 +1,5 @@
+#' @importFrom shinydashboard box
+#' @importFrom shiny tags
 #' @export image_box
 image_box <- function(url = NULL, image_link = NULL, title = NULL, image_width = '100%', box_width = 12) {
   box(tags$a(

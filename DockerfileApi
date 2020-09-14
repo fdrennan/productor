@@ -16,10 +16,14 @@ RUN apt-get update --allow-releaseinfo-change -qq && apt-get install -y \
   python3-venv \
   libssl-dev \
   postgresql-client \
-  libsasl2-dev
+  libsasl2-dev \
+  libgdal-dev \
+  libfontconfig1-dev \
+  libcairo2-dev \
+  libudunits2-dev
 
-RUN R -e "install.packages('devtools')"
 RUN R -e "install.packages('tidyverse')"
+RUN R -e "install.packages('devtools')"
 RUN R -e "install.packages('RPostgres')"
 RUN R -e "install.packages('DBI')"
 RUN R -e "install.packages('glue')"
@@ -29,6 +33,27 @@ RUN R -e "install.packages('tictoc')"
 RUN R -e "install.packages('openxlsx')"
 RUN R -e "install.packages('dlstats')"
 RUN R -e "install.packages('dbx')"
+RUN R -e "install.packages('magrittr')"
+RUN R -e "install.packages('forcats')"
+RUN R -e "install.packages('stringr')"
+RUN R -e "install.packages('lubridate')"
+RUN R -e "install.packages('gridExtra')"
+RUN R -e "install.packages('ggrepel')"
+RUN R -e "install.packages('urbnmapr')"
+RUN R -e "install.packages('dplyr')"
+RUN R -e "install.packages('ggridges')"
+RUN R -e "install.packages('viridis')"
+RUN R -e "install.packages('hrbrthemes')"
+RUN R -e "install.packages('usethis')"
+RUN R -e "install.packages('readr')"
+RUN R -e "install.packages('rlang')"
+RUN R -e "install.packages('sysfonts')"
+RUN R -e "install.packages('purrr')"
+RUN R -e "install.packages('tibble')"
+RUN R -e "install.packages('reticulate')"
+
+RUN R -e "devtools::install_github('UrbanInstitute/urbnmapr')"
+RUN R -e "devtools::install_github('fdrennan/drenplot')"
 
 COPY ./productor /home/productor
 

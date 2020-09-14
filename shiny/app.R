@@ -29,7 +29,7 @@ ui <- dashboardPage(
       tabItem(
         tabName = 'dashboard',
         fluidRow(
-          actionButton("goButton", "Go!"),
+          box(actionButton("goButton", "Go!", width = '100%'), width = 12),
           spinnerbox(plotOutput("tidyverseDownloads"), 12)
         )
       ),
