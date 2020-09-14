@@ -162,7 +162,7 @@ docker-compose -f docker-compose-beta.yaml up
 # Old Commands. Integrated to DockerHub + Github Hooks
 
 ```
-docker build -t productor_app_basis --file ./DockerfileAppBasis .
+docker build -t productor_app_basis --file ./DockerfileApp .
 docker tag productor_app_basis:latest fdrennan/productor_app:latest
 docker push fdrennan/productor_app:latest
 
@@ -185,6 +185,7 @@ docker-compose -f docker-compose-scratch.yaml pull
 docker-compose -f docker-compose-scratch.yaml up -d --build productor_postgres
 docker-compose -f docker-compose-scratch.yaml up -d --build productor_initdb
 docker-compose -f docker-compose-scratch.yaml restart
+docker-compose -f docker-compose-scratch.yaml up
 
 docker-compose -f docker-compose-dev.yaml pull
 docker-compose -f docker-compose-dev.yaml up -d --build productor_postgres

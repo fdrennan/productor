@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   productor_webserver:
-    image: fdrennan/productor_rpy:dev
+    image: productor_rpy_basis
     restart: always
     depends_on:
       - productor_initdb
@@ -30,7 +30,7 @@ services:
     volumes:
       - airflow_postgres:/var/lib/postgresql/data
   productor_initdb:
-    image: fdrennan/productor_rpy:dev
+    image: productor_rpy_basis
     restart: always
     depends_on:
       - productor_postgres
@@ -41,7 +41,7 @@ services:
       AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@172.17.0.1:5439/airflow
     command: airflow initdb
   productor_scheduler:
-    image: fdrennan/productor_rpy:dev
+    image: productor_rpy_basis
     restart: always
     depends_on:
       - productor_webserver
