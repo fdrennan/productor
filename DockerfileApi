@@ -19,6 +19,7 @@ RUN apt-get update --allow-releaseinfo-change -qq && apt-get install -y \
   libsasl2-dev \
   libgdal-dev \
   libfontconfig1-dev \
+  libcairo2-dev \
   libudunits2-dev
 
 RUN R -e "install.packages('tidyverse')"
