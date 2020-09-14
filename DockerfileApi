@@ -29,6 +29,7 @@ RUN R -e "install.packages('tictoc')"
 RUN R -e "install.packages('openxlsx')"
 RUN R -e "install.packages('dlstats')"
 RUN R -e "install.packages('dbx')"
+RUN R -e "devtools::install_github('fdrennan/drenplot')"
 
 COPY ./productor /home/productor
 
