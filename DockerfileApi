@@ -18,6 +18,7 @@ RUN apt-get update --allow-releaseinfo-change -qq && apt-get install -y \
   postgresql-client \
   libsasl2-dev \
   libgdal-dev \
+  libfontconfig1-dev \
   libudunits2-dev
 
 RUN R -e "install.packages('devtools')"
@@ -42,7 +43,6 @@ RUN R -e "install.packages('urbnmapr')"
 RUN R -e "install.packages('dplyr')"
 RUN R -e "install.packages('ggridges')"
 RUN R -e "install.packages('viridis')"
-RUN R -e "install.packages('hrbrthemes')"
 RUN R -e "install.packages('hrbrthemes')"
 RUN R -e "install.packages('usethis')"
 RUN R -e "install.packages('readr')"
