@@ -30,7 +30,7 @@ http {
         
         listen 80;
 
-        location / {
+        location /app {
             proxy_pass http://shiny:3838;
         }
         
