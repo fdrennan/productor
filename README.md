@@ -169,7 +169,7 @@ docker push fdrennan/productor_app:latest
 ```
 
 ```
-docker build -t productor_api_basis --file ./DockerfileApiBasis .
+docker build -t productor_api_basis --file ./DockerfileApi .
 docker tag productor_api_basis:latest fdrennan/productor_api:latest
 docker push fdrennan/productor_api:latest
 
@@ -185,3 +185,8 @@ docker-compose -f docker-compose-scratch.yaml pull
 docker-compose -f docker-compose-scratch.yaml up -d --build productor_postgres
 docker-compose -f docker-compose-scratch.yaml up -d --build productor_initdb
 docker-compose -f docker-compose-scratch.yaml restart
+
+docker-compose -f docker-compose-dev.yaml pull
+docker-compose -f docker-compose-dev.yaml up -d --build productor_postgres
+docker-compose -f docker-compose-dev.yaml up -d --build productor_initdb
+docker-compose -f docker-compose-dev.yaml restart

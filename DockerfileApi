@@ -17,6 +17,7 @@ RUN apt-get update --allow-releaseinfo-change -qq && apt-get install -y \
   libssl-dev \
   postgresql-client \
   libsasl2-dev \
+  libgdal-dev \
   libudunits2-dev
 
 RUN R -e "install.packages('devtools')"
