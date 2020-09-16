@@ -24,7 +24,6 @@ http {
 
     server {
     
-        proxy_set_header Host $http_host;
         
         listen 80;
 
