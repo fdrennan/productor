@@ -30,7 +30,7 @@ productor_conf <- glue(
   "
 SERVER={SERVER}
 PRODUCTOR_HOME={PRODUCTOR_HOME}
-NGINX_HOST_NAME=web
+NGINX_HOST_NAME={local_ip}
 POSTGRES_HOST=productor_db
 AIRFLOW_HOST={local_ip}
 LOCALHOST_IP={local_ip}
