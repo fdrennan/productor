@@ -26,7 +26,7 @@ http {
         
         listen 80;
 
-        location /app {
+        location /app/ {
             proxy_pass http://(LOCALHOST_IP):3000;
         }
         
