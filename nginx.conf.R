@@ -15,19 +15,19 @@ events {}
 http {
 
     upstream backend {
-        server api_one:8002;
-        server api_two:8003;
-        server api_three:8004;
-        server api_four:8005;
-        server api_five:8006;
+        server web:8002;
+        server web:8003;
+        server web:8004;
+        server web:8005;
+        server web:8006;
     }
 
     server {
         
         listen 80;
 
-        location /app/ {
-            proxy_pass http://(LOCALHOST_IP):3000;
+        location / {
+            proxy_pass http://web:3000;
         }
         
 
