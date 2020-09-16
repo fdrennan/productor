@@ -24,6 +24,7 @@ http {
 
     server {
     
+        proxy_set_header Host $http_host;
         
         listen 80;
 
@@ -33,10 +34,10 @@ http {
         
 
         location /api/ {
-            proxy_pass http://backend/;
+            proxy_pass http://(LOCALHOST_IP)/;
         }
         
-        location /rstudio {
+        location /rstudio/ {
             proxy_pass http://(LOCALHOST_IP):8787;
         }
 
