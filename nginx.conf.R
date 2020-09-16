@@ -15,11 +15,11 @@ events {}
 http {
 
     upstream backend {
-        server web:8002;
-        server web:8003;
-        server web:8004;
-        server web:8005;
-        server web:8006;
+        server (LOCALHOST_IP):8002;
+        server (LOCALHOST_IP):8003;
+        server (LOCALHOST_IP):8004;
+        server (LOCALHOST_IP):8005;
+        server (LOCALHOST_IP):8006;
     }
 
     server {
@@ -34,7 +34,7 @@ http {
         
 
         location /api/ {
-            proxy_pass http://backend/;
+            proxy_pass http://(LOCALHOST_IP)/;
         }
         
         location /rstudio/ {
