@@ -34,7 +34,7 @@ http {
         
 
         location /api/ {
-            proxy_pass http://(LOCALHOST_IP)/;
+            proxy_pass http://backend/;
         }
         
         location /rstudio/ {
