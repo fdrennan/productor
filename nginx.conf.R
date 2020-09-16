@@ -19,11 +19,11 @@ http {
     proxy_read_timeout 900;
     
     upstream backend {
-        server api_one:8000;
-        server api_two:8000;
-        server api_three:8000;
-        server api_four:8000;
-        server api_five:8000;
+        server (LOCALHOST_IP):8000;
+        server (LOCALHOST_IP):8000;
+        server (LOCALHOST_IP):8000;
+        server (LOCALHOST_IP):8000;
+        server (LOCALHOST_IP):8000;
     }
 
     server {
