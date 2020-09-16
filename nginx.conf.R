@@ -13,17 +13,13 @@ nginx_conf <- glue('
 events {}
 
 http {
-    autoindex on;
-    autoindex_exact_size off;
-    fastcgi_read_timeout 900;
-    proxy_read_timeout 900;
-    
+
     upstream backend {
-        server (LOCALHOST_IP):8000;
-        server (LOCALHOST_IP):8000;
-        server (LOCALHOST_IP):8000;
-        server (LOCALHOST_IP):8000;
-        server (LOCALHOST_IP):8000;
+        server web:8002;
+        server web:8003;
+        server web:8004;
+        server web:8005;
+        server web:8006;
     }
 
     server {
@@ -36,7 +32,7 @@ http {
         
 
         location /api/ {
-            proxy_pass http://(LOCALHOST_IP)/;
+            proxy_pass http://backend/;
         }
         
         location /rstudio/ {
