@@ -30,13 +30,13 @@ http {
         
         listen 80;
 
-        location / {
-            proxy_pass http://shiny:3838;
+        location /app {
+            proxy_pass http://(LOCALHOST_IP):3000;
         }
         
 
         location /api/ {
-            proxy_pass http://backend/;
+            proxy_pass http://(LOCALHOST_IP)/;
         }
         
         location /rstudio/ {
