@@ -31,6 +31,10 @@ RUN R -e "install.packages('scales')"
 RUN R -e "install.packages('promises')"
 RUN R -e "install.packages('future')"
 RUN R -e "devtools::install_github('fdrennan/drenplot')"
+RUN R -e "devtools::install_github('fdrennan/drenplot')"
+RUN R -e "devtools::install_github('fdrennan/ndexssh')"
+RUN R -e "devtools::install_github('fdrennan/ndexshell')"
+RUN R -e "devtools::install_github('fdrennan/ndexpg')"
 
 COPY ./productorapp /home/productorapp
 

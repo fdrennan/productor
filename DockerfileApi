@@ -54,6 +54,9 @@ RUN R -e "install.packages('reticulate')"
 
 RUN R -e "devtools::install_github('UrbanInstitute/urbnmapr')"
 RUN R -e "devtools::install_github('fdrennan/drenplot')"
+RUN R -e "devtools::install_github('fdrennan/ndexssh')"
+RUN R -e "devtools::install_github('fdrennan/ndexshell')"
+RUN R -e "devtools::install_github('fdrennan/ndexpg')"
 
 COPY ./productor /home/productor
 
