@@ -71,6 +71,5 @@ RUN R -e "devtools::install_github('fdrennan/ndexpg', dependencies=TRUE)"
 RUN R -e "devtools::install_github('fdrennan/biggr', dependencies=TRUE)"
 
 COPY ./productor /home/productor
-
 RUN R -e "setwd('/home/productor'); devtools::install(dependencies=TRUE)"
 
