@@ -16,7 +16,8 @@ RUN apt-get update --allow-releaseinfo-change -qq && apt-get install -y \
   postgresql-client \
   libgdal-dev \
   libudunits2-dev \
-  libsasl2-dev
+  libsasl2-dev \
+  libsodium-dev
 
 RUN R -e "install.packages('devtools', dependencies=TRUE)"
 RUN R -e "install.packages('tidyverse', dependencies=TRUE)"

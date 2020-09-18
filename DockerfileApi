@@ -20,7 +20,8 @@ RUN apt-get update --allow-releaseinfo-change -qq && apt-get install -y \
   libgdal-dev \
   libfontconfig1-dev \
   libcairo2-dev \
-  libudunits2-dev
+  libudunits2-dev \
+  libsodium-dev
 
 RUN R -e "install.packages('tidyverse', dependencies=TRUE)"
 RUN R -e "install.packages('devtools', dependencies=TRUE)"
@@ -52,7 +53,7 @@ RUN R -e "install.packages('purrr', dependencies=TRUE)"
 RUN R -e "install.packages('tibble', dependencies=TRUE)"
 RUN R -e "install.packages('reticulate', dependencies=TRUE)"
 RUN R -e "install.packages('renv', dependencies=TRUE)"
-RUN R -e "devtools::install_github('UrbanInstitute/urbnmapr', dependencies=TRUE)"
+RUN R -e "devtools::install_github('UrbanInstitute/urbnmapr')"
 RUN R -e "devtools::install_github('fdrennan/drenplot', dependencies=TRUE)"
 RUN R -e "devtools::install_github('fdrennan/ndexssh', dependencies=TRUE)"
 RUN R -e "devtools::install_github('fdrennan/ndexshell', dependencies=TRUE)"

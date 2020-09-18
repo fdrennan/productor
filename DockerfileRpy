@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     postgresql-client \
     libudunits2-dev \
     libgdal-dev \
+    libsodium-dev \
     libpq-dev -y
 
 COPY ./airflow.requirements.txt /root/airflow.requirements.txt
