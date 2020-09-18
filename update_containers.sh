@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 docker build -t productor_app_basis --file ./DockerfileApp .
 #docker tag productor_app_basis:latest fdrennan/productor_app:latest
