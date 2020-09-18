@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     postgresql-client \
     libudunits2-dev \
     libgdal-dev \
+    libsodium-dev \
     libpq-dev -y
 
 COPY ./airflow.requirements.txt /root/airflow.requirements.txt
@@ -32,23 +33,43 @@ RUN pip install --no-deps --trusted-host pypi.python.org -r airflow.requirements
 
 WORKDIR /home/scripts
 
-RUN R -e "install.packages('devtools')"
-RUN R -e "install.packages('tidyverse')"
-RUN R -e "install.packages('RPostgres')"
-RUN R -e "install.packages('DBI')"
-RUN R -e "install.packages('glue')"
-RUN R -e "install.packages('fs')"
-RUN R -e "install.packages('jsonlite')"
-RUN R -e "install.packages('tictoc')"
-RUN R -e "install.packages('openxlsx')"
-RUN R -e "install.packages('dlstats')"
-RUN R -e "install.packages('dbx')"
-RUN R -e "devtools::install_github('fdrennan/drenplot')"
-RUN R -e "devtools::install_github('fdrennan/ndexssh')"
-RUN R -e "devtools::install_github('fdrennan/ndexshell')"
-RUN R -e "devtools::install_github('fdrennan/ndexpg')"
+RUN R -e "install.packages('tidyverse', dependencies=TRUE)"
+RUN R -e "install.packages('devtools', dependencies=TRUE)"
+RUN R -e "install.packages('RPostgres', dependencies=TRUE)"
+RUN R -e "install.packages('DBI', dependencies=TRUE)"
+RUN R -e "install.packages('glue', dependencies=TRUE)"
+RUN R -e "install.packages('fs', dependencies=TRUE)"
+RUN R -e "install.packages('jsonlite', dependencies=TRUE)"
+RUN R -e "install.packages('tictoc', dependencies=TRUE)"
+RUN R -e "install.packages('openxlsx', dependencies=TRUE)"
+RUN R -e "install.packages('dlstats', dependencies=TRUE)"
+RUN R -e "install.packages('dbx', dependencies=TRUE)"
+RUN R -e "install.packages('magrittr', dependencies=TRUE)"
+RUN R -e "install.packages('forcats', dependencies=TRUE)"
+RUN R -e "install.packages('stringr', dependencies=TRUE)"
+RUN R -e "install.packages('lubridate', dependencies=TRUE)"
+RUN R -e "install.packages('gridExtra', dependencies=TRUE)"
+RUN R -e "install.packages('ggrepel', dependencies=TRUE)"
+RUN R -e "install.packages('urbnmapr', dependencies=TRUE)"
+RUN R -e "install.packages('dplyr', dependencies=TRUE)"
+RUN R -e "install.packages('ggridges', dependencies=TRUE)"
+RUN R -e "install.packages('viridis', dependencies=TRUE)"
+RUN R -e "install.packages('hrbrthemes', dependencies=TRUE)"
+RUN R -e "install.packages('usethis', dependencies=TRUE)"
+RUN R -e "install.packages('readr', dependencies=TRUE)"
+RUN R -e "install.packages('rlang', dependencies=TRUE)"
+RUN R -e "install.packages('sysfonts', dependencies=TRUE)"
+RUN R -e "install.packages('purrr', dependencies=TRUE)"
+RUN R -e "install.packages('tibble', dependencies=TRUE)"
+RUN R -e "install.packages('reticulate', dependencies=TRUE)"
+RUN R -e "install.packages('renv', dependencies=TRUE)"
+RUN R -e "devtools::install_github('UrbanInstitute/urbnmapr', dependencies=TRUE)"
+RUN R -e "devtools::install_github('fdrennan/drenplot', dependencies=TRUE)"
+RUN R -e "devtools::install_github('fdrennan/ndexssh', dependencies=TRUE)"
+RUN R -e "devtools::install_github('fdrennan/ndexshell', dependencies=TRUE)"
+RUN R -e "devtools::install_github('fdrennan/ndexpg', dependencies=TRUE)"
+RUN R -e "devtools::install_github('fdrennan/biggr', dependencies=TRUE)"
 
 COPY ./productor /home/productor
-
 RUN R -e "setwd('/home/productor'); devtools::install(dependencies=TRUE)"
 

@@ -16,25 +16,27 @@ RUN apt-get update --allow-releaseinfo-change -qq && apt-get install -y \
   postgresql-client \
   libgdal-dev \
   libudunits2-dev \
-  libsasl2-dev
+  libsasl2-dev \
+  libsodium-dev
 
-RUN R -e "install.packages('devtools')"
-RUN R -e "install.packages('tidyverse')"
-RUN R -e "install.packages('shiny')"
-RUN R -e "install.packages('shinydashboard')"
-RUN R -e "install.packages('httr')"
-RUN R -e "install.packages('jsonlite')"
-RUN R -e "install.packages('shinycssloaders')"
-RUN R -e "install.packages('ggplot2')"
-RUN R -e "install.packages('glue')"
-RUN R -e "install.packages('scales')"
-RUN R -e "install.packages('promises')"
-RUN R -e "install.packages('future')"
-RUN R -e "devtools::install_github('fdrennan/drenplot')"
-RUN R -e "devtools::install_github('fdrennan/drenplot')"
-RUN R -e "devtools::install_github('fdrennan/ndexssh')"
-RUN R -e "devtools::install_github('fdrennan/ndexshell')"
-RUN R -e "devtools::install_github('fdrennan/ndexpg')"
+RUN R -e "install.packages('devtools', dependencies=TRUE)"
+RUN R -e "install.packages('tidyverse', dependencies=TRUE)"
+RUN R -e "install.packages('shiny', dependencies=TRUE)"
+RUN R -e "install.packages('shinydashboard', dependencies=TRUE)"
+RUN R -e "install.packages('httr', dependencies=TRUE)"
+RUN R -e "install.packages('jsonlite', dependencies=TRUE)"
+RUN R -e "install.packages('shinycssloaders', dependencies=TRUE)"
+RUN R -e "install.packages('ggplot2', dependencies=TRUE)"
+RUN R -e "install.packages('glue', dependencies=TRUE)"
+RUN R -e "install.packages('scales', dependencies=TRUE)"
+RUN R -e "install.packages('promises', dependencies=TRUE)"
+RUN R -e "install.packages('future', dependencies=TRUE)"
+RUN R -e "install.packages('renv', dependencies=TRUE)"
+RUN R -e "devtools::install_github('fdrennan/drenplot', dependencies=TRUE)"
+RUN R -e "devtools::install_github('fdrennan/ndexssh', dependencies=TRUE)"
+RUN R -e "devtools::install_github('fdrennan/ndexshell', dependencies=TRUE)"
+RUN R -e "devtools::install_github('fdrennan/ndexpg', dependencies=TRUE)"
+RUN R -e "devtools::install_github('fdrennan/biggr', dependencies=TRUE)"
 
 COPY ./productorapp /home/productorapp
 
