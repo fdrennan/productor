@@ -143,20 +143,6 @@ services:
       - POSTGRES_USER=${PRODUCTOR_POSTGRES_USER}
       - POSTGRES_PASSWORD=${PRODUCTOR_POSTGRES_PASSWORD}
       - POSTGRES_DB=${PRODUCTOR_POSTGRES_DB}
-  shiny:
-    container_name: productor_app
-    image: productor_app_basis
-    restart: always
-    user: 'root'
-    # Uncomment the lines below to disable application logs STDOUT output
-    # environment:
-    #   - APPLICATION_LOGS_TO_STDOUT=false
-    ports:
-      - '3000:3838'
-    volumes:
-      - './shiny/shiny-server.conf:/etc/shiny-server/shiny-server.conf'
-      - './shiny/app.R:/app/app.R'
-      - './.env:/app/.Renviron'
   rstudio:
     environment:
       - USER=${RSTUDIO_USER}

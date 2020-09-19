@@ -1,3 +1,12 @@
+#' upsert_tidyverse_data
+#' @description Takes recent tidyverse download data and stores it in Postgres
+#' @importFrom dplyr transmute
+#' @importFrom dlstats cran_stats
+#' @importFrom DBI dbExecute
+#' @importFrom dbx dbxUpsert
+#' @importFrom magrittr %>% 
+#' @importFrom glue glue
+#' @param con A connection to postgres
 #' @export upsert_tidyverse_data
 upsert_tidyverse_data <- function(con) {
   
